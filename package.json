@@ -1,0 +1,6 @@
+{
+    "name": "chatapp",
+    "dependencies":{
+        "express": "3.4.8"
+    }
+}

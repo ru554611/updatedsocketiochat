@@ -1,1 +1,38 @@
-Rich Rocks!
+<!Doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+</head>
+<body>
+    <div id="messages">
+    </div>
+    <form id="messageForm">
+        <input id="from" placeholder="enter your alias" />
+        <input id="message" placeholder="enter your message" />
+        <input type="submit" />
+    </form>
+    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            var socket = io('http://localhost:8080');
+            jQuery("#messageForm").submit(function () {
+                var data = {
+                    from: jQuery("#from").val(),
+                    message: jQuery("#message").val()
+                };
+                socket.emit('receive message', data);
+                jQuery("#messages").append('<div><strong>me:&nbsp;&nbsp;</strong>' + _.escape(data.message) + "</div>");
+                jQuery("#message").val("");
+                return false;
+            });
+            socket.on('receive message', function (data) {
+                jQuery("#messages").append('<div><strong>' + _.escape(data.from) + ':&nbsp;&nbsp;</strong>' + _.escape(data.message) + "</div>");
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,10 +1,10 @@
 {
     "name": "chatapp",
     "dependencies":{
-        "express": "3.4.8",
+        "express": "*",
         "engine.io": "*",
         "socket.io": "*",
-        "debug": "*"
-
+        "debug": "*",
+        "underscore":"*"
     }
 }

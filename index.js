@@ -10,7 +10,7 @@ server.listen(port, function(){
 });
 
 io.on('connection', function (socket) {
-  // when the client emits 'new message', this listens and executes
+  // when the client emits 'receive message', this listens and executes
   socket.on('receive message', function (data) {
       var oOut = {
           from: _.escape(data.from),

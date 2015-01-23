@@ -17,7 +17,7 @@
     <script src="socket.io/socket.io.js"></script>
     <script>
         jQuery(document).ready(function () {
-            var socket = io('http://localhost:8080');
+            var socket = io(document.URL);
             jQuery("#messageForm").submit(function () {
                 var data = {
                     from: jQuery("#from").val(),
